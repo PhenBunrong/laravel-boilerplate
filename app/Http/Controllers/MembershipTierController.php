@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MembershipTier;
 use Illuminate\Http\Request;
 
 class MembershipTierController extends Controller
 {
-    function index() {
-        return response()->json([
-            'message' => 'Membership Tiers retrieved successfully',
-            'data' => [
-                ['id' => 1, 'name' => 'Bronze', 'benefits' => 'Basic access to content'],
-                ['id' => 2, 'name' => 'Silver', 'benefits' => 'Access to exclusive content and discounts'],
-                ['id' => 3, 'name' => 'Gold', 'benefits' => 'All benefits of Silver plus early access to new features']
-            ]
-        ], 200);
+    function index(Request $request) {
+       $data = MembershipTier::where('name', 'like', '%' . $request->input('search') . '%')->paginate(10);
+
+       return response()->json($data);
     }
 }
