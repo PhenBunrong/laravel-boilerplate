@@ -20,4 +20,13 @@ class MembershipTier extends Model
         'max_transactions' => 'int',
         'status' => 'int',
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->creator_id = 1;
+        });
+    }
 }

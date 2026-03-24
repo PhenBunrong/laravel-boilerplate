@@ -12,4 +12,30 @@ class MembershipTierController extends Controller
 
        return response()->json($data);
     }
+
+    function store(Request $request) {
+        $data = MembershipTier::create($request->all());
+
+        return response()->json($data);
+    }
+
+    function show($id) {
+        $data = MembershipTier::find($id);
+
+        return response()->json($data);
+    }
+
+    // function update(Request $request, $id) {
+    //     $data = MembershipTier::find($id);
+    //     $data->update($request->all());
+
+    //     return response()->json($data);
+    // }
+
+    // function destroy($id) {
+    //     $data = MembershipTier::find($id);
+    //     $data->delete();
+
+    //     return response()->json(['message' => 'Membership tier deleted successfully']);
+    // }
 }
